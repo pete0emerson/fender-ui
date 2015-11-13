@@ -46,6 +46,7 @@ module.exports = React.createClass({
 
     return (
       <div className="plate_container">
+        <h2>Fender</h2>
         <div className="plate">
          <div className="plate__state">{state.toUpperCase()}</div>
          <div className="plate__id">{plate_id.toUpperCase()}</div>
