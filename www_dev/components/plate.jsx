@@ -12,15 +12,26 @@ module.exports = React.createClass({
     return {
       waiting: true,
       state: null,
-      plate_id: null
+      plate_id: null,
+      info: null
     };
 	},
 
   componentWillMount: function(){
+    var _this = this;
+    var state = this.props.params.splat;
+    var plate_id = this.props.params.plate_id;
+
     console.log(requests);
 
-    requests.testCALL(function(err, data){
+    requests.testCALL(state, plate_id, function(err, data){
+      if(!err){
+        _this.setState({
+          info: JSON.stringify(data)
+        });
+      }
       console.log('Testing Request', err, data);
+
     });
   },
 
@@ -29,6 +40,7 @@ module.exports = React.createClass({
   	var props = this.props;
   	var state = this.props.params.splat;
   	var plate_id = this.props.params.plate_id;
+    var info  = this.state.info;
 
   	console.log("PROPS", props);
 
@@ -37,6 +49,7 @@ module.exports = React.createClass({
         <div className="plate">
          <div className="plate__state">{state.toUpperCase()}</div>
          <div className="plate__id">{plate_id.toUpperCase()}</div>
+         <div className="comments">{info}</div>
         </div>
         
       </div>

@@ -6,16 +6,16 @@ module.exports = {
     
     testRequest: 'HIIIIIII',
 
-    testCALL: function(cb) {
+    testCALL: function(state, plate_id, cb) {
         var _this = this;
         var errorMessage = 'Error creating your Automatic account. Please try again.';
 
         $.ajax({
-            url: apiURL + 'California/123ABC',
+            url: apiURL + state + '/' + plate_id,
             type: 'GET',
             datatype: 'json',
             success: function(data) {
-                console.log('TESTDATA', data);
+                console.log('Plate Data:', data);
                 cb(null, data);
             },
 

@@ -1,10 +1,14 @@
 var React = require('react');
+var History = require('react-router').History;
+
 
 /**
  * Component: Program Pane
  */
 
 module.exports = React.createClass({
+
+  mixins: [ History ],
 
   render: function() {
 
@@ -33,6 +37,8 @@ module.exports = React.createClass({
     // TODO: send request to the server
 
     console.log(state, plate_id);
+
+    this.props.history.pushState(null, '/' + state + '/' + plate_id);
 
     return;
   }

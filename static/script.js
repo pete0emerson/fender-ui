@@ -24318,16 +24318,16 @@
 	    
 	    testRequest: 'HIIIIIII',
 
-	    testCALL: function(cb) {
+	    testCALL: function(state, plate_id, cb) {
 	        var _this = this;
 	        var errorMessage = 'Error creating your Automatic account. Please try again.';
 
 	        $.ajax({
-	            url: apiURL + 'California/123ABC',
+	            url: apiURL + state + '/' + plate_id,
 	            type: 'GET',
 	            datatype: 'json',
 	            success: function(data) {
-	                console.log('TESTDATA', data);
+	                console.log('Plate Data:', data);
 	                cb(null, data);
 	            },
 
@@ -33574,15 +33574,26 @@
 	    return {
 	      waiting: true,
 	      state: null,
-	      plate_id: null
+	      plate_id: null,
+	      info: null
 	    };
 		},
 
 	  componentWillMount: function(){
+	    var _this = this;
+	    var state = this.props.params.splat;
+	    var plate_id = this.props.params.plate_id;
+
 	    console.log(requests);
 
-	    requests.testCALL(function(err, data){
+	    requests.testCALL(state, plate_id, function(err, data){
+	      if(!err){
+	        _this.setState({
+	          info: JSON.stringify(data)
+	        });
+	      }
 	      console.log('Testing Request', err, data);
+
 	    });
 	  },
 
@@ -33591,6 +33602,7 @@
 	  	var props = this.props;
 	  	var state = this.props.params.splat;
 	  	var plate_id = this.props.params.plate_id;
+	    var info  = this.state.info;
 
 	  	console.log("PROPS", props);
 
@@ -33598,7 +33610,8 @@
 	      React.createElement("div", {className: "plate_container"}, 
 	        React.createElement("div", {className: "plate"}, 
 	         React.createElement("div", {className: "plate__state"}, state.toUpperCase()), 
-	         React.createElement("div", {className: "plate__id"}, plate_id.toUpperCase())
+	         React.createElement("div", {className: "plate__id"}, plate_id.toUpperCase()), 
+	         React.createElement("div", {className: "comments"}, info)
 	        )
 	        
 	      )
@@ -33612,12 +33625,16 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */var React = __webpack_require__(1);
+	var History = __webpack_require__(160).History;
+
 
 	/**
 	 * Component: Program Pane
 	 */
 
 	module.exports = React.createClass({displayName: "module.exports",
+
+	  mixins: [ History ],
 
 	  render: function() {
 
@@ -33630,7 +33647,7 @@
 	            React.createElement("option", {value: "Arizona"}, "AZ")
 	          ), 
 	          React.createElement("input", {type: "text", ref: "plate_id"}), 
-	          React.createElement("input", {type: "submit", value: "Post"})
+	          React.createElement("input", {type: "submit", value: "Search"})
 	        )
 	      )
 	    );
@@ -33646,6 +33663,8 @@
 	    // TODO: send request to the server
 
 	    console.log(state, plate_id);
+
+	    this.props.history.pushState(null, '/' + state + '/' + plate_id);
 
 	    return;
 	  }
