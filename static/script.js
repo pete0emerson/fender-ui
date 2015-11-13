@@ -33624,16 +33624,32 @@
 	    return (
 	      React.createElement("div", {className: "fender__home"}, 
 	        React.createElement("h1", null, "Fender"), 
-	        React.createElement("form", null, 
-	          React.createElement("select", null, 
+	        React.createElement("form", {onSubmit: this.submitForm}, 
+	          React.createElement("select", {ref: "state"}, 
 	            React.createElement("option", {value: "California"}, "CA"), 
 	            React.createElement("option", {value: "Arizona"}, "AZ")
 	          ), 
-	          React.createElement("input", {type: "text"})
+	          React.createElement("input", {type: "text", ref: "plate_id"}), 
+	          React.createElement("input", {type: "submit", value: "Post"})
 	        )
 	      )
 	    );
 	  },
+
+	  submitForm: function(event){
+	    event.preventDefault();
+	    var state = this.refs.state.value.trim();
+	    var plate_id = this.refs.plate_id.value.trim();
+	    if (!state || !plate_id) {
+	      return;
+	    }
+	    // TODO: send request to the server
+
+	    console.log(state, plate_id);
+
+	    return;
+	  }
+
 	});
 
 

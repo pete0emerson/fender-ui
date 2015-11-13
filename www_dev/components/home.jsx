@@ -11,28 +11,29 @@ module.exports = React.createClass({
     return (
       <div className="fender__home">
         <h1>Fender</h1>
-        <form onSubmit=this.submitForm>
-          <select>
-            <option value="California">CA</option>
+        <form onSubmit={this.submitForm}>
+          <select ref="state">
+            <option value="California" >CA</option>
             <option value="Arizona">AZ</option>
           </select>
-          <input type="text"></input>
-          <button ></button>
+          <input type="text" ref="plate_id"></input>
+          <input type="submit" value="Search"/>
         </form>
       </div>
     );
   },
 
   submitForm: function(event){
-e.preventDefault();
-    var author = this.refs.author.value.trim();
-    var text = this.refs.text.value.trim();
-    if (!text || !author) {
+    event.preventDefault();
+    var state = this.refs.state.value.trim();
+    var plate_id = this.refs.plate_id.value.trim();
+    if (!state || !plate_id) {
       return;
     }
     // TODO: send request to the server
-    this.refs.author.value = '';
-    this.refs.text.value = '';
+
+    console.log(state, plate_id);
+
     return;
   }
 
