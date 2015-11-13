@@ -10,9 +10,18 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^0.22.0",
+    "install": "^0.3.0",
     "jsx-loader": "^0.13.2",
     "less-loader": "^2.2.1",
+    "npm": "^3.4.0",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.4"
+  },
+  "dependencies": {
+    "history": "^1.13.0",
+    "jquery": "^2.1.4",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-router": "^1.0.0"
   }
 }
