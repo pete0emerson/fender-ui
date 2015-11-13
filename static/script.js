@@ -24315,7 +24315,9 @@
 	var apiURL = 'https://fender-api.automatic.co/'
 
 	module.exports = {
+	    
 	    testRequest: 'HIIIIIII',
+
 	    testCALL: function(cb) {
 	        var _this = this;
 	        var errorMessage = 'Error creating your Automatic account. Please try again.';
@@ -33620,8 +33622,8 @@
 	  render: function() {
 
 	    return (
-	      React.createElement("div", {className: "pane pane--program"}, 
-	        "HOME HOME HOME"
+	      React.createElement("div", {className: "fender__home"}, 
+	        React.createElement("h1", null, "Fender")
 	      )
 	    );
 	  },

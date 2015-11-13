@@ -10,15 +10,20 @@
 
 @font-face {
   font-family: "Panton";
-  src: url("./fonts/locator-regular.eot");
-  src: url("./fonts/locator-regular.eot?#iefix") format("embedded-opentype"),
-       url("./fonts/locator-regular.woff") format("woff"),
-       url("./fonts/locator-regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+  src: url("./fonts/panton-extrabold.eot");
+  src: url("./fonts/panton-extrabold.eot?#iefix") format("embedded-opentype"),
+       url("./fonts/panton-extrabold.woff") format("woff"),
+       url("./fonts/panton-extrabold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: bold;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: "LocatorRegular", sans-serif;
     background: #eee;
+}
+
+h1, h2, h3 {
+    font-family: "Panton", sans-serif;
+    font-weight: bold;
 }

@@ -10,7 +10,7 @@ module.exports = React.createClass({
 
     return (
       <div className="fender__home">
-        HOME HOME HOME
+        <h1>Fender</h1>
       </div>
     );
   },
