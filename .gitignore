@@ -1,2 +1,4 @@
 dev
 *.pyc
+
+www_dev/node_modules

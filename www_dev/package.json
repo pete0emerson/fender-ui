@@ -1,0 +1,18 @@
+{
+  "name": "fender-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.22.0",
+    "jsx-loader": "^0.13.2",
+    "less-loader": "^2.2.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.4"
+  }
+}

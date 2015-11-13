@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello World UI!'
+    return 'Hello World UI Hmoyven!'
 
 @app.route('/_status/')
 def status():
@@ -17,4 +17,4 @@ def display():
     return render_template('display.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8889)
+    app.run(host='0.0.0.0', port=8889, debug=True)
