@@ -33623,7 +33623,14 @@
 
 	    return (
 	      React.createElement("div", {className: "fender__home"}, 
-	        React.createElement("h1", null, "Fender")
+	        React.createElement("h1", null, "Fender"), 
+	        React.createElement("form", null, 
+	          React.createElement("select", null, 
+	            React.createElement("option", {value: "California"}, "CA"), 
+	            React.createElement("option", {value: "Arizona"}, "AZ")
+	          ), 
+	          React.createElement("input", {type: "text"})
+	        )
 	      )
 	    );
 	  },
