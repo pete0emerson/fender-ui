@@ -54,13 +54,13 @@ module.exports = {
 
           if (data.items[i].emojis && data.items[i].emojis.length > 0) {
 
-            console.log('Has emojis!!', data.items[i].emojis);
-
             emojiList = data.items[i].emojis;
+            console.log('Has emojis!!', emojiList);
 
-            for (j = 0; i < emojiList.length; i++) {
+            for (j = 0; j < emojiList.length; j++) {
 
               emoji = emojiList[j];
+              console.log("Iterating emojiList", emoji);
 
               if (emojis[emoji]) {
                 emojis[emoji]++;
@@ -70,6 +70,8 @@ module.exports = {
             }
           }          
         }
+
+        console.log("EMOJIIIIIIS", emojis);
 
         cb(null, {
           messages: messages,

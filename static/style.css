@@ -34,7 +34,8 @@ h3 {
     text-align: center;
 }
 
-.plate_home .plate {
+.plate_home .plate,
+.licenseInput {
     background: #FFF;
     border-radius: 10px;
     color: #003E47;
@@ -42,10 +43,55 @@ h3 {
     padding: 2em;
 }
 
-.plate__state {
+.plate__state,
+select {
     text-transform: uppercase;
 }
 
-.plate__id {
+.plate__id,
+input {
     font-size: 4em;
+    width: 99%;
+    border: 0;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+    list-style: none;
+}
+
+ul li {
+    list-style-type: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.timestamp {
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+}
+
+.message {
+    font-size: 2em;
+    padding: 0;
+    padding-bottom: 1em;
+    margin: 0;
+}
+
+.emojiListItem {
+    font-size: 5em;
+    border-top: 1px solid #000;
+    color: #2D829F;    
+}
+
+.emojiListItem:first-child {
+    border: 0;
+}
+
+.emojiList {
+    background: #D9E4E6;
+    border-radius: 10px;
 }

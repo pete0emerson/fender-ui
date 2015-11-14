@@ -61,12 +61,11 @@ module.exports = React.createClass({
       console.log('HAS SUPER EMOJIS');
       emojiList = [];
       for (var emojiName in emojis){
-        emojiList.push(<li key={emojiName} className="emojiListItem">{emojiName.replace(' ', '\\x')} {emojis[emojiName]}</li>)
+        emojiList.push(<li key={emojiName} className="emojiListItem">{emojiName.replace(/ /g, '\\x')} {emojis[emojiName]}</li>)
       } 
 
       emojiView = (
         <ul className="emojiList">
-          EMOJIS
           {emojiList}
         </ul>
       );
@@ -75,7 +74,7 @@ module.exports = React.createClass({
     if(messages){
       messageList = [];
       for (var i = 0; i < messages.length; i++){
-        messageList.push(<li key={i} className="messageListItem"><p>{messages[i].timestamp}</p><p>{messages[i].msg}</p></li>)
+        messageList.push(<li key={i} className="messageListItem"><p className="timestamp">{messages[i].timestamp}</p><p  className="message">{messages[i].msg}</p></li>)
       }       
 
       messageView = (

@@ -16,11 +16,13 @@ module.exports = React.createClass({
       <div className="fender__home">
         <h1>Fender</h1>
         <form onSubmit={this.submitForm}>
-          <select ref="state">
-            <option value="California" >CA</option>
-            <option value="Arizona">AZ</option>
-          </select>
-          <input type="text" ref="plate_id"></input>
+          <div className="licenseInput">
+            <select ref="state">
+              <option value="California" >CA</option>
+              <option value="Arizona">AZ</option>
+            </select>
+            <input type="text" ref="plate_id"></input>
+          </div>
           <input type="submit" value="Search"/>
         </form>
       </div>

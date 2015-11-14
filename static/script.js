@@ -24366,13 +24366,13 @@
 
 	          if (data.items[i].emojis && data.items[i].emojis.length > 0) {
 
-	            console.log('Has emojis!!', data.items[i].emojis);
-
 	            emojiList = data.items[i].emojis;
+	            console.log('Has emojis!!', emojiList);
 
-	            for (j = 0; i < emojiList.length; i++) {
+	            for (j = 0; j < emojiList.length; j++) {
 
 	              emoji = emojiList[j];
+	              console.log("Iterating emojiList", emoji);
 
 	              if (emojis[emoji]) {
 	                emojis[emoji]++;
@@ -24382,6 +24382,8 @@
 	            }
 	          }          
 	        }
+
+	        console.log("EMOJIIIIIIS", emojis);
 
 	        cb(null, {
 	          messages: messages,
@@ -33681,12 +33683,11 @@
 	      console.log('HAS SUPER EMOJIS');
 	      emojiList = [];
 	      for (var emojiName in emojis){
-	        emojiList.push(React.createElement("li", {key: emojiName, className: "emojiListItem"}, emojiName, " ", emojis[emojiName]))
+	        emojiList.push(React.createElement("li", {key: emojiName, className: "emojiListItem"}, emojiName.replace(/ /g, '\\x'), " ", emojis[emojiName]))
 	      } 
 
 	      emojiView = (
 	        React.createElement("ul", {className: "emojiList"}, 
-	          "EMOJIS", 
 	          emojiList
 	        )
 	      );
@@ -33695,7 +33696,7 @@
 	    if(messages){
 	      messageList = [];
 	      for (var i = 0; i < messages.length; i++){
-	        messageList.push(React.createElement("li", {key: i, className: "messageListItem"}, React.createElement("p", null, messages[i].timestamp), React.createElement("p", null, messages[i].msg)))
+	        messageList.push(React.createElement("li", {key: i, className: "messageListItem"}, React.createElement("p", {className: "timestamp"}, messages[i].timestamp), React.createElement("p", {className: "message"}, messages[i].msg)))
 	      }       
 
 	      messageView = (
@@ -33739,11 +33740,13 @@
 	      React.createElement("div", {className: "fender__home"}, 
 	        React.createElement("h1", null, "Fender"), 
 	        React.createElement("form", {onSubmit: this.submitForm}, 
-	          React.createElement("select", {ref: "state"}, 
-	            React.createElement("option", {value: "California"}, "CA"), 
-	            React.createElement("option", {value: "Arizona"}, "AZ")
+	          React.createElement("div", {className: "licenseInput"}, 
+	            React.createElement("select", {ref: "state"}, 
+	              React.createElement("option", {value: "California"}, "CA"), 
+	              React.createElement("option", {value: "Arizona"}, "AZ")
+	            ), 
+	            React.createElement("input", {type: "text", ref: "plate_id"})
 	          ), 
-	          React.createElement("input", {type: "text", ref: "plate_id"}), 
 	          React.createElement("input", {type: "submit", value: "Search"})
 	        )
 	      )
