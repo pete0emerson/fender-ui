@@ -37,22 +37,27 @@ h3 {
 .plate_home .plate,
 .licenseInput {
     background: #FFF;
-    border-radius: 10px;
+    border-radius: 5px;
     color: #003E47;
-    font-size: 2em;
-    padding: 2em;
+    font-size: 2rem;
+    padding: 2rem;
 }
 
 .plate__state,
 select {
     text-transform: uppercase;
+    border: 0;
+    font-size: 2rem;
+    text-align: center;
 }
 
 .plate__id,
 input {
-    font-size: 4em;
-    width: 99%;
+    font-family: "LocatorRegular", sans-serif;
+    font-size: 4rem;
     border: 0;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 ul {
@@ -68,30 +73,57 @@ ul li {
     margin: 0;
 }
 
+.emojiListItem,
+.messageListItem {
+    font-size: 5rem;
+    border-top: 1px solid #BEBEBE;
+    color: #2D829F;
+}
+
+.emojiListItem:first-child,
+.messageListItem:first-child {
+    border: 0;
+}
+
+.messageListItem {
+    padding: 2rem;
+}
+
+.emojiList,
+.messageList {
+    background: #D9E4E6;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
 .timestamp {
-    font-size: 1em;
+    font-size: 1rem;
     padding: 0;
     margin: 0;
 }
 
 .message {
-    font-size: 2em;
+    font-size: 2rem;
     padding: 0;
-    padding-bottom: 1em;
     margin: 0;
 }
 
-.emojiListItem {
-    font-size: 5em;
-    border-top: 1px solid #000;
-    color: #2D829F;    
+input[type=text] {
+    width: 99%;
 }
 
-.emojiListItem:first-child {
-    border: 0;
+input[type=select], .selectState {
+    background: transparent;
+    border-radius: 0;
+    -webkit-appearance: none;
 }
 
-.emojiList {
-    background: #D9E4E6;
-    border-radius: 10px;
+input[type=submit] {
+    margin-top: 1rem;
+    background: #84D9F6;
+    color: white;
+    font-size: 3rem;
+    border-radius: 5px;
+    padding: 1rem;
+    width: 100%;
 }

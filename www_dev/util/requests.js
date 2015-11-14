@@ -62,7 +62,7 @@ module.exports = {
               emoji = emojiList[j];
               console.log("Iterating emojiList", emoji);
 
-              if (emojis[emoji]) {
+              if (typeof emojis[emoji] === 'number') {
                 emojis[emoji]++;
               } else {
                 emojis[emoji] = 1;
