@@ -38,8 +38,12 @@ module.exports = {
       datatype: 'json',
       success: function(data) {
 
+        console.log('Plate Data:', data);
+
         var emojiList;
         var i, j;
+        var emoji;
+        var emojis = {};
 
         for (i = 0; i < data.items.length; i++) {
 
@@ -50,19 +54,23 @@ module.exports = {
 
           if (data.items[i].emojis && data.items[i].emojis.length > 0) {
 
+            console.log('Has emojis!!', data.items[i].emojis);
+
             emojiList = data.items[i].emojis;
 
             for (j = 0; i < emojiList.length; i++) {
-              if (emojis[emojiList[i]]) {
-                emojis[emojiList[i]]++;
+
+              emoji = emojiList[j];
+
+              if (emojis[emoji]) {
+                emojis[emoji]++;
               } else {
-                emojis[emojiList[i]] = 1;
+                emojis[emoji] = 1;
               }
             }
-          }
+          }          
         }
 
-        console.log('Plate Data:', data);
         cb(null, {
           messages: messages,
           emojis: emojis

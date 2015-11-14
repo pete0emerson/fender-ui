@@ -24350,8 +24350,12 @@
 	      datatype: 'json',
 	      success: function(data) {
 
+	        console.log('Plate Data:', data);
+
 	        var emojiList;
 	        var i, j;
+	        var emoji;
+	        var emojis = {};
 
 	        for (i = 0; i < data.items.length; i++) {
 
@@ -24362,19 +24366,23 @@
 
 	          if (data.items[i].emojis && data.items[i].emojis.length > 0) {
 
+	            console.log('Has emojis!!', data.items[i].emojis);
+
 	            emojiList = data.items[i].emojis;
 
 	            for (j = 0; i < emojiList.length; i++) {
-	              if (emojis[emojiList[i]]) {
-	                emojis[emojiList[i]]++;
+
+	              emoji = emojiList[j];
+
+	              if (emojis[emoji]) {
+	                emojis[emoji]++;
 	              } else {
-	                emojis[emojiList[i]] = 1;
+	                emojis[emoji] = 1;
 	              }
 	            }
-	          }
+	          }          
 	        }
 
-	        console.log('Plate Data:', data);
 	        cb(null, {
 	          messages: messages,
 	          emojis: emojis
@@ -33639,7 +33647,8 @@
 	    requests.testCALL(state, plate_id, function(err, data){
 	      if(!err){
 	        _this.setState({
-	          info: JSON.stringify(data)
+	          emojis: data.emojis,
+	          messages: data.messages
 	        });
 	      }
 	      console.log('Testing Request', err, data);
@@ -33649,22 +33658,59 @@
 
 	  render: function() {
 
-	  	var props = this.props;
 	  	var state = this.props.params.splat;
 	  	var plate_id = this.props.params.plate_id;
-	    var info  = this.state.info;
+	    var emojis = this.state.emojis;
+	    var messages = this.state.messages;
 
-	  	console.log("PROPS", props);
+	    var emojiList = null;
+	    var emojiView = null;
+
+	    var messageView = null;
+	    var messageList = null;
+
+	    var plate = (
+	      React.createElement("div", {className: "plate"}, 
+	         React.createElement("div", {className: "plate__state"}, state.toUpperCase()), 
+	         React.createElement("div", {className: "plate__id"}, plate_id.toUpperCase())
+	      )
+	    );
+
+	    if(emojis){
+
+	      console.log('HAS SUPER EMOJIS');
+	      emojiList = [];
+	      for (var emojiName in emojis){
+	        emojiList.push(React.createElement("li", {key: emojiName, className: "emojiListItem"}, emojiName, " ", emojis[emojiName]))
+	      } 
+
+	      emojiView = (
+	        React.createElement("ul", {className: "emojiList"}, 
+	          "EMOJIS", 
+	          emojiList
+	        )
+	      );
+	    }
+
+	    if(messages){
+	      messageList = [];
+	      for (var i = 0; i < messages.length; i++){
+	        messageList.push(React.createElement("li", {key: i, className: "messageListItem"}, React.createElement("p", null, messages[i].timestamp), React.createElement("p", null, messages[i].msg)))
+	      }       
+
+	      messageView = (
+	        React.createElement("ul", {className: "messageList"}, 
+	          messageList
+	        )
+	      );
+	    }
 
 	    return (
-	      React.createElement("div", {className: "plate_container"}, 
+	      React.createElement("div", {className: "plate_home"}, 
 	        React.createElement("h2", null, "Fender"), 
-	        React.createElement("div", {className: "plate"}, 
-	         React.createElement("div", {className: "plate__state"}, state.toUpperCase()), 
-	         React.createElement("div", {className: "plate__id"}, plate_id.toUpperCase()), 
-	         React.createElement("div", {className: "comments"}, info)
-	        )
-	        
+	        plate, 
+	        emojiView, 
+	        messageView
 	      )
 	    );
 	  },

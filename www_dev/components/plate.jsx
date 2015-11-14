@@ -27,7 +27,8 @@ module.exports = React.createClass({
     requests.testCALL(state, plate_id, function(err, data){
       if(!err){
         _this.setState({
-          info: JSON.stringify(data)
+          emojis: data.emojis,
+          messages: data.messages
         });
       }
       console.log('Testing Request', err, data);
@@ -37,22 +38,59 @@ module.exports = React.createClass({
 
   render: function() {
 
-  	var props = this.props;
   	var state = this.props.params.splat;
   	var plate_id = this.props.params.plate_id;
-    var info  = this.state.info;
+    var emojis = this.state.emojis;
+    var messages = this.state.messages;
 
-  	console.log("PROPS", props);
+    var emojiList = null;
+    var emojiView = null;
 
-    return (
-      <div className="plate_container">
-        <h2>Fender</h2>
-        <div className="plate">
+    var messageView = null;
+    var messageList = null;
+
+    var plate = (
+      <div className="plate">
          <div className="plate__state">{state.toUpperCase()}</div>
          <div className="plate__id">{plate_id.toUpperCase()}</div>
-         <div className="comments">{info}</div>
-        </div>
-        
+      </div>
+    );
+
+    if(emojis){
+
+      console.log('HAS SUPER EMOJIS');
+      emojiList = [];
+      for (var emojiName in emojis){
+        emojiList.push(<li key={emojiName} className="emojiListItem">{emojiName.replace(' ', '\\x')} {emojis[emojiName]}</li>)
+      } 
+
+      emojiView = (
+        <ul className="emojiList">
+          EMOJIS
+          {emojiList}
+        </ul>
+      );
+    }
+
+    if(messages){
+      messageList = [];
+      for (var i = 0; i < messages.length; i++){
+        messageList.push(<li key={i} className="messageListItem"><p>{messages[i].timestamp}</p><p>{messages[i].msg}</p></li>)
+      }       
+
+      messageView = (
+        <ul className="messageList">
+          {messageList}
+        </ul>
+      );
+    }
+
+    return (
+      <div className="plate_home">
+        <h2>Fender</h2>
+        {plate}        
+        {emojiView}
+        {messageView}
       </div>
     );
   },

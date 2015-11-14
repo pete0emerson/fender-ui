@@ -1,21 +1,17 @@
 @font-face {
-  font-family: "LocatorRegular";
-  src: url("./fonts/locator-regular.eot");
-  src: url("./fonts/locator-regular.eot?#iefix") format("embedded-opentype"),
-       url("./fonts/locator-regular.woff") format("woff"),
-       url("./fonts/locator-regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "LocatorRegular";
+    src: url("./fonts/locator-regular.eot");
+    src: url("./fonts/locator-regular.eot?#iefix") format("embedded-opentype"), url("./fonts/locator-regular.woff") format("woff"), url("./fonts/locator-regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Panton";
-  src: url("./fonts/panton-extrabold.eot");
-  src: url("./fonts/panton-extrabold.eot?#iefix") format("embedded-opentype"),
-       url("./fonts/panton-extrabold.woff") format("woff"),
-       url("./fonts/panton-extrabold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: bold;
+    font-family: "Panton";
+    src: url("./fonts/panton-extrabold.eot");
+    src: url("./fonts/panton-extrabold.eot?#iefix") format("embedded-opentype"), url("./fonts/panton-extrabold.woff") format("woff"), url("./fonts/panton-extrabold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: bold;
 }
 
 body {
@@ -24,8 +20,32 @@ body {
     color: #FFF;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: "Panton", sans-serif;
     font-weight: bold;
 }
 
+.main {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.plate_home .plate {
+    background: #FFF;
+    border-radius: 10px;
+    color: #003E47;
+    font-size: 2em;
+    padding: 2em;
+}
+
+.plate__state {
+    text-transform: uppercase;
+}
+
+.plate__id {
+    font-size: 4em;
+}
