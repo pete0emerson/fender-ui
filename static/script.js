@@ -33889,6 +33889,8 @@
 
 	  	var state = this.props.params.splat;
 	  	var plate_id = this.props.params.plate_id;
+	    var plate_id_firstHalf = plate_id.slice(0, Math.floor(plate_id.length/2));
+	    var plate_id_lastHalf = plate_id.slice(Math.floor(plate_id.length/2), plate_id.length);
 	    var emojis = this.state.emojis;
 	    var messages = this.state.messages;
 
@@ -33903,7 +33905,7 @@
 	    if(emojis && emojis.length > 0){
 	      randomEmoji = emojis[0].emoji;
 	    } else {
-	      randomEmoji = emojiArray[Math.floor(Math.random()) * emojiArray.length];
+	      randomEmoji = '😄';
 	    }
 
 	    var plate = (
@@ -33912,7 +33914,7 @@
 	        React.createElement("img", {src: "/static/image/plate_bg.svg", alt: "Fender"}), 
 	        React.createElement("div", {className: "plateBody"}, 
 	          React.createElement("div", {className: "plate__state"}, state.toUpperCase()), 
-	          React.createElement("h1", {className: "plateText"}, plate_id.toUpperCase(), React.createElement("span", {className: "plateEmoji"}, randomEmoji))
+	          React.createElement("h1", {className: "plateText"}, plate_id_firstHalf.toUpperCase(), React.createElement("span", {className: "plateEmoji"}, randomEmoji), plate_id_lastHalf.toUpperCase())
 	        )
 	      )
 	    );
@@ -33980,7 +33982,7 @@
 	var History = __webpack_require__(160).History;
 
 
-	var emojiArray = ['😄', '😡', '😡', '😡', '😡', '😡'];
+	var emojiArray = ['😄', '😄', '😡', '🖕', '💛', '👍', '👋', '💀'];
 
 	/**
 	 * Component: Program Pane
@@ -33998,7 +34000,7 @@
 
 	  render: function() {
 
-	    var randomEmoji = emojiArray[Math.floor(Math.random()) * emojiArray.length];
+	    var randomEmoji = emojiArray[ Math.floor(Math.random() * emojiArray.length)];
 
 	    return (
 	      React.createElement("div", {className: "fender__home"}, 

@@ -2,7 +2,7 @@ var React = require('react');
 var History = require('react-router').History;
 
 
-var emojiArray = ['😄', '😡', '😡', '😡', '😡', '😡'];
+var emojiArray = ['😄', '😄', '😡', '🖕', '💛', '👍', '👋', '💀'];
 
 /**
  * Component: Program Pane
@@ -20,7 +20,7 @@ module.exports = React.createClass({
 
   render: function() {
 
-    var randomEmoji = emojiArray[Math.floor(Math.random()) * emojiArray.length];
+    var randomEmoji = emojiArray[ Math.floor(Math.random() * emojiArray.length)];
 
     return (
       <div className="fender__home">

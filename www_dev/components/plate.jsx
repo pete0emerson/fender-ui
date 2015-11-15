@@ -49,6 +49,8 @@ module.exports = React.createClass({
 
   	var state = this.props.params.splat;
   	var plate_id = this.props.params.plate_id;
+    var plate_id_firstHalf = plate_id.slice(0, Math.floor(plate_id.length/2));
+    var plate_id_lastHalf = plate_id.slice(Math.floor(plate_id.length/2), plate_id.length);
     var emojis = this.state.emojis;
     var messages = this.state.messages;
 
@@ -63,7 +65,7 @@ module.exports = React.createClass({
     if(emojis && emojis.length > 0){
       randomEmoji = emojis[0].emoji;
     } else {
-      randomEmoji = emojiArray[Math.floor(Math.random()) * emojiArray.length];
+      randomEmoji = '😄';
     }
 
     var plate = (
@@ -72,7 +74,7 @@ module.exports = React.createClass({
         <img src="/static/image/plate_bg.svg" alt="Fender"/>
         <div className="plateBody">
           <div className="plate__state">{state.toUpperCase()}</div>
-          <h1 className="plateText">{plate_id.toUpperCase()}<span className="plateEmoji">{randomEmoji}</span></h1>
+          <h1 className="plateText">{plate_id_firstHalf.toUpperCase()}<span className="plateEmoji">{randomEmoji}</span>{plate_id_lastHalf.toUpperCase()}</h1>
         </div>          
       </div>
     );
