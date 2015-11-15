@@ -95,8 +95,9 @@ input {
 
 .messageHeader {
     color: #003E47;
-    padding: 1rem 0 0 0;
-    border-top: 3px solid #003E47;
+    padding: 1rem 0 1rem 0;
+    border-top: 3px solid #CCC;
+    background: #EEE
 }
 
 ul {
@@ -133,6 +134,11 @@ ul li {
 .messageList {
     background: none;
     border-radius: 5px;
+}
+
+.emojiList {
+    margin-top: -2rem;
+    padding-bottom: 2rem;
 }
 
 span.emojiCount {
@@ -186,7 +192,6 @@ input[type=submit] {
     border-radius: 5px;
     color: white;
     font-size: 2rem;
-    margin-top: 1rem;
     padding: 1.5rem;
     width: 100%;
     cursor: pointer;
@@ -194,6 +199,7 @@ input[type=submit] {
 
 .submitContainer {
     padding: 2rem;
+    border-top: solid 3px #ccc;
     width: 100%;
     box-sizing: border-box;
     background: #EFEFEF;
@@ -242,10 +248,22 @@ span.plateEmoji {
     font-family: "LocatorRegular", sans-serif;
 }
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
-    .plateEmoji,
-    .emojiListItem {
-        font-family: "AppleColorEmoji";
-        -webkit-transform: scale(5);
+@media only screen and (min-device-width: 320px) and (max-device-width: 667px) {
+    .plateMain {
+        padding: 0;
+    }
+
+    h1.plateText {
+        font-size: 3rem;
+    }
+
+
+    h1.plateText span.plateEmoji {
+        display: inline-block;
+        font-family: "AppleColorEmoji";        
+        transform: scale(3);
+        padding:.3em;
+        top: 8px;
+        position: relative;
     }
 }
