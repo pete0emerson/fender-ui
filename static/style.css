@@ -14,10 +14,23 @@
     font-style: bold;
 }
 
+body,
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: "LocatorRegular", sans-serif;
-    background: #003E47;
+    background: #F7F7F7;
     color: #FFF;
+    font-family: "LocatorRegular", sans-serif;
+    font-size: 24px;
+}
+
+#appContainer {
+    height: 100%;
 }
 
 h1,
@@ -25,13 +38,27 @@ h2,
 h3 {
     font-family: "Panton", sans-serif;
     font-weight: bold;
+    text-transform: uppercase;
+    padding: 3rem;
+    margin: 0;
+}
+
+h2 {
+    padding: 2rem 2rem 3rem 2rem;
+}
+
+h1 {
+    font-size: 4rem;
 }
 
 .main {
-    width: 100%;
-    max-width: 800px;
     margin: 0 auto;
+    max-width: 500px;
     text-align: center;
+    width: 100%;
+    position: relative;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, .25);
+    background: white;
 }
 
 .plate_home .plate,
@@ -41,26 +68,44 @@ h3 {
     color: #003E47;
     font-size: 2rem;
     padding: 2rem;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, .25);
+}
+
+.plateContainer {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+}
+
+.plate {
+    position: relative;
+    top: -1rem;
 }
 
 .plate__state,
 select {
-    text-transform: uppercase;
     border: 0;
     font-size: 2rem;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .plate__id,
 input {
+    border: 0;
     font-family: "LocatorRegular", sans-serif;
     font-size: 4rem;
-    border: 0;
-    text-transform: uppercase;
     text-align: center;
+    text-transform: uppercase;
+}
+
+.messageHeader {
+    color: #003E47;
+    padding: 1rem 0 0 0;
+    border-top: 3px solid #003E47;
 }
 
 ul {
+    margin: 0;
     padding: 0;
     list-style-type: none;
     list-style: none;
@@ -69,15 +114,15 @@ ul {
 ul li {
     list-style-type: none;
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 .emojiListItem,
 .messageListItem {
-    font-size: 5rem;
-    border-top: 1px solid #BEBEBE;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
     color: #2D829F;
+    font-size: 5rem;
 }
 
 .emojiListItem:first-child,
@@ -91,39 +136,104 @@ ul li {
 
 .emojiList,
 .messageList {
-    background: #D9E4E6;
+    background: none;
     border-radius: 5px;
-    padding: 1rem;
+}
+
+span.emojiCount {
+    font-family: "Panton", sans-serif;
 }
 
 .timestamp {
     font-size: 1rem;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 .message {
     font-size: 2rem;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
-input[type=text] {
+input[type=text],
+.plate__id {
     width: 99%;
+    color: #2D829F;
 }
 
-input[type=select], .selectState {
+input[type=select],
+.selectState,
+.plate__state,
+.currentState {
+    -webkit-appearance: none;
     background: transparent;
     border-radius: 0;
-    -webkit-appearance: none;
+    color: #2D829F;
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase
+}
+
+.selectState {
+    display: none;
 }
 
 input[type=submit] {
-    margin-top: 1rem;
     background: #84D9F6;
-    color: white;
-    font-size: 3rem;
     border-radius: 5px;
-    padding: 1rem;
+    color: white;
+    font-size: 2rem;
+    margin-top: 1rem;
+    padding: 1.5rem;
     width: 100%;
+}
+
+.submitContainer {
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.plateMain {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    height: auto;    
+    padding: 3rem 3rem 3rem 3rem;
+}
+
+.plateBody {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    position: absolute;
+    flex-direction: column;
+    left: 0;
+    top: 0;
+}
+
+.plateMain img {
+    width: 100%;    
+    -webkit-filter: drop-shadow( 0px 3px 3px rgba(0, 0, 0, .25) );
+            filter: drop-shadow( 0px 3px 3px rgba(0, 0, 0, .25);  );
+}
+
+.plateMain .plateText {
+    top: 50%;
+    color: #003E47;
+    text-align: center;  
+    text-shadow: 0px 3px 3px rgba(0, 0, 0, .25);  
+    padding: 0;
+}
+
+span.plateEmoji {
+    font-family: "LocatorRegular", sans-serif;
 }

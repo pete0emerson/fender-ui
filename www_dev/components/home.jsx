@@ -2,6 +2,8 @@ var React = require('react');
 var History = require('react-router').History;
 
 
+var emojiArray = ['😄', '😡', '😡', '😡', '😡', '😡'];
+
 /**
  * Component: Program Pane
  */
@@ -10,13 +12,27 @@ module.exports = React.createClass({
 
   mixins: [ History ],
 
+  getInitialState: function(){
+    return {
+      currentState: 'California'
+    }
+  },
+
   render: function() {
+
+    var randomEmoji = emojiArray[Math.floor(Math.random()) * emojiArray.length];
 
     return (
       <div className="fender__home">
-        <h1>Fender</h1>
+        <div className="plateMain">
+          <img src="/static/image/plate_bg.svg" alt="Fender"/>
+          <div className="plateBody">
+            <h1 className="plateText">FEN<span className="plateEmoji">{randomEmoji}</span>DER</h1>
+          </div>          
+        </div>
         <form onSubmit={this.submitForm}>
           <div className="licenseInput">
+            <div className='currentState'>{this.state.currentState}</div>
             <select className="selectState" ref="state" defaultValue="California">
               <option value="Alabama">Alabama</option>
               <option value="Alaska">Alaska</option>
@@ -70,9 +86,11 @@ module.exports = React.createClass({
               <option value="Wisconsin">Wisconsin</option>
               <option value="Wyoming">Wyoming</option>
             </select>
-            <input type="text" placeholder="Plate Number" ref="plate_id"></input>
+            <input type="text" placeholder="Plate No." ref="plate_id" autofocus></input>
           </div>
-          <input className="button" type="submit" value="Search"/>
+          <div className="submitContainer">
+            <input className="button" type="submit" value="Search"/>
+          </div>
         </form>
       </div>
     );
@@ -81,7 +99,7 @@ module.exports = React.createClass({
   submitForm: function(event){
     event.preventDefault();
     var state = this.refs.state.value.trim();
-    var plate_id = this.refs.plate_id.value.trim();
+    var plate_id = this.refs.plate_id.value.trim().toUpperCase();
     if (!state || !plate_id) {
       return;
     }
