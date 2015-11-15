@@ -61,16 +61,6 @@ h1 {
     background: white;
 }
 
-.plate_home .plate,
-.licenseInput {
-    background: #FFF;
-    border-radius: 5px;
-    color: #003E47;
-    font-size: 2rem;
-    padding: 2rem;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, .25);
-}
-
 .plateContainer {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 5px;
@@ -156,10 +146,16 @@ span.emojiCount {
     padding: 0;
 }
 
+.licenseInput{
+    padding-bottom: 3rem;
+}
+
 input[type=text],
 .plate__id {
-    width: 99%;
+    width: 75%;
     color: #2D829F;
+    border: 3px solid #EEE;
+    border-radius: 5px;
 }
 
 input[type=select],
@@ -188,12 +184,14 @@ input[type=submit] {
     margin-top: 1rem;
     padding: 1.5rem;
     width: 100%;
+    cursor: pointer;
 }
 
 .submitContainer {
     padding: 2rem;
     width: 100%;
     box-sizing: border-box;
+    background: #EFEFEF;
 }
 
 .plateMain {
