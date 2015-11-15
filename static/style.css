@@ -14,10 +14,10 @@
     font-style: bold;
 }
 
-.plateEmoji, .emojiListItem {
+.plateEmoji,
+.emojiListItem {
     font-family: "AppleColorEmoji";
 }
-
 
 body,
 html {
@@ -243,5 +243,9 @@ span.plateEmoji {
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
-    .plateEmoji: 
+    .plateEmoji,
+    .emojiListItem {
+        font-family: "AppleColorEmoji";
+        -webkit-transform: scale(5);
+    }
 }
