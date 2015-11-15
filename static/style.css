@@ -248,9 +248,10 @@ span.plateEmoji {
     font-family: "LocatorRegular", sans-serif;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 667px) {
+@media  screen and (min-device-width: 320px) and (max-device-width: 667px) {
     .plateMain {
         padding: 0;
+        margin-bottom: 3rem;
     }
 
     h1.plateText {
@@ -265,5 +266,12 @@ span.plateEmoji {
         padding:.3em;
         top: 8px;
         position: relative;
+    }
+}
+
+@media  screen and (max-width: 470px) {
+    .plateMain {
+        padding: 0;
+        margin-bottom: 3rem;
     }
 }
