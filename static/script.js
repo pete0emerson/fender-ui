@@ -35573,6 +35573,7 @@
 	        React.createElement("form", {onSubmit: this.submitForm}, 
 	          React.createElement("div", {className: "licenseInput"}, 
 	            React.createElement("div", {className: "currentState"}, this.state.currentState), 
+	            React.createElement("input", {type: "text", placeholder: "Plate No.", ref: "plate_id", autoFocus: "true"}), 
 	            React.createElement("select", {className: "selectState", ref: "state", defaultValue: "California"}, 
 	              React.createElement("option", {value: "Alabama"}, "Alabama"), 
 	              React.createElement("option", {value: "Alaska"}, "Alaska"), 
@@ -35625,8 +35626,8 @@
 	              React.createElement("option", {value: "West Virginia"}, "West Virginia"), 
 	              React.createElement("option", {value: "Wisconsin"}, "Wisconsin"), 
 	              React.createElement("option", {value: "Wyoming"}, "Wyoming")
-	            ), 
-	            React.createElement("input", {type: "text", placeholder: "Plate No.", ref: "plate_id", autofocus: true})
+	            )
+	            
 	          ), 
 	          React.createElement("div", {className: "submitContainer"}, 
 	            React.createElement("input", {className: "button", type: "submit", value: "Search"})

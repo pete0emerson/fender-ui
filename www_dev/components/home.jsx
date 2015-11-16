@@ -33,6 +33,7 @@ module.exports = React.createClass({
         <form onSubmit={this.submitForm}>
           <div className="licenseInput">
             <div className='currentState'>{this.state.currentState}</div>
+            <input type="text" placeholder="Plate No." ref="plate_id" autoFocus="true"></input>
             <select className="selectState" ref="state" defaultValue="California">
               <option value="Alabama">Alabama</option>
               <option value="Alaska">Alaska</option>
@@ -86,7 +87,7 @@ module.exports = React.createClass({
               <option value="Wisconsin">Wisconsin</option>
               <option value="Wyoming">Wyoming</option>
             </select>
-            <input type="text" placeholder="Plate No." ref="plate_id" autofocus></input>
+            
           </div>
           <div className="submitContainer">
             <input className="button" type="submit" value="Search"/>
