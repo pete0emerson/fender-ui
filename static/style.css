@@ -14,10 +14,11 @@
     font-style: bold;
 }
 
-/*.plateEmoji,
+.plateEmoji,
 .emojiListItem {
-    font-family: "AppleColorEmoji";
-}*/
+    /*font-family: "AppleColorEmoji";*/
+    vertical-align: middle;
+}
 
 body,
 html {
