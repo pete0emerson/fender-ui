@@ -100,7 +100,7 @@ module.exports = React.createClass({
       );
     }
 
-    if(messages){
+    if(messages && messages.length > 0){
       messageList = [];
       for (var i = 0; i < messages.length; i++){
         messageList.push(
@@ -117,6 +117,12 @@ module.exports = React.createClass({
           <ul className="messageList">
             {messageList}
           </ul>
+        </div>
+      );
+    } else {
+       messageView = (
+        <div>
+          <h3 className="messageHeader">No Messages</h3>          
         </div>
       );
     }

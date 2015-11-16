@@ -19639,8 +19639,8 @@
 	// Utilities
 	var requests = __webpack_require__(211);
 
-	var Plate = __webpack_require__(213);
-	var Home = __webpack_require__(214);
+	var Plate = __webpack_require__(214);
+	var Home = __webpack_require__(215);
 
 	/**
 	 * App Component
@@ -24517,7 +24517,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(212);
-	var _ = __webpack_require__(215);
+	var _ = __webpack_require__(213);
 
 	var apiURL = 'https://fender-api.automatic.co/'
 
@@ -33838,267 +33838,6 @@
 /* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/** @jsx React.DOM */var React = __webpack_require__(1);
-	var requests = __webpack_require__(211);
-
-	var emojiArray = ['😄', '😡', '😡', '😡', '😡', '😡'];
-
-
-	/**
-	 * Component: Program Pane
-	 */
-
-	module.exports = React.createClass({displayName: "module.exports",
-
-
-		getInitialState: function(){
-	    return {
-	      waiting: true,
-	      state: null,
-	      plate_id: null,
-	      info: null
-	    };
-		},
-
-	  componentWillMount: function(){
-	    var _this = this;
-	    var state = this.props.params.splat;
-	    var plate_id = this.props.params.plate_id;
-
-	    console.log(requests);
-
-	    requests.testCALL(state, plate_id, function(err, data){
-	     
-	      _this.setState({
-	        waiting: false
-	      })
-
-	      if(!err){
-	        _this.setState({
-	          emojis: data.emojis,
-	          messages: data.messages
-	        });
-	      }
-
-	      console.log('Testing Request', err, data);
-
-	    });
-	  },
-
-	  render: function() {
-
-	  	var state = this.props.params.splat;
-	  	var plate_id = this.props.params.plate_id;
-	    var plate_id_firstHalf = plate_id.slice(0, Math.floor(plate_id.length/2));
-	    var plate_id_lastHalf = plate_id.slice(Math.floor(plate_id.length/2), plate_id.length);
-	    var emojis = this.state.emojis;
-	    var messages = this.state.messages;
-
-	    var emojiList = null;
-	    var emojiView = null;
-
-	    var messageView = null;
-	    var messageList = null;
-
-	    var randomEmoji = null;
-
-	    if(emojis && emojis.length > 0){
-	      randomEmoji = emojis[0].emoji;
-	    } else {
-	      randomEmoji = '😄';
-	    }
-
-	    var plate = (
-
-	      React.createElement("div", {className: "plateMain"}, 
-	        React.createElement("img", {src: "/static/image/plate_bg.svg", alt: "Fender"}), 
-	        React.createElement("div", {className: "plateBody"}, 
-	          React.createElement("div", {className: "plate__state"}, state.toUpperCase()), 
-	          React.createElement("h1", {className: "plateText"}, plate_id_firstHalf.toUpperCase(), React.createElement("span", {className: "plateEmoji"}, randomEmoji), plate_id_lastHalf.toUpperCase())
-	        )
-	      )
-	    );
-
-	    if(emojis && emojis.length > 0){
-
-	      console.log('HAS SUPER EMOJIS');
-	      emojiList = [];
-	      
-	      for (var i = 0; i < emojis.length; i++){
-	        emojiList.push(React.createElement("li", {key: i, className: "emojiListItem"}, emojis[i].emoji.replace(/ /g, '\\x'), " ", React.createElement("span", {className: "emojiCount"}, emojis[i].count)))
-	      }
-	        
-	    
-	      // for (var emojiName in emojis){
-	      //   emojiList.push(<li key={emojiName} className="emojiListItem">{emojiName.replace(/ /g, '\\x')} <span className="emojiCount">{emojis[emojiName]}</span></li>)
-	      // } 
-
-	      emojiView = (
-	        React.createElement("ul", {className: "emojiList"}, 
-	          emojiList
-	        )
-	      );
-	    }
-
-	    if(messages){
-	      messageList = [];
-	      for (var i = 0; i < messages.length; i++){
-	        messageList.push(
-	          React.createElement("li", {key: i, className: "messageListItem"}, 
-	            React.createElement("p", {className: "message"}, messages[i].msg), 
-	            React.createElement("p", {className: "timestamp"}, messages[i].timestamp)
-	          )
-	        )
-	      }       
-
-	      messageView = (
-	        React.createElement("div", null, 
-	          React.createElement("h3", {className: "messageHeader"}, "Messages"), 
-	          React.createElement("ul", {className: "messageList"}, 
-	            messageList
-	          )
-	        )
-	      );
-	    }
-
-	    return (
-	      React.createElement("div", {className: "plate_home"}, 
-	        React.createElement("div", {className: "plateContainer"}, 
-	          plate, 
-	          emojiView, 
-	          messageView
-	        )
-	      )
-	    );
-	  },
-	});
-
-
-/***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/** @jsx React.DOM */var React = __webpack_require__(1);
-	var History = __webpack_require__(160).History;
-
-
-	var emojiArray = ['😄', '😄', '😡', '🖕', '💛', '👍', '👋', '💀'];
-
-	/**
-	 * Component: Program Pane
-	 */
-
-	module.exports = React.createClass({displayName: "module.exports",
-
-	  mixins: [ History ],
-
-	  getInitialState: function(){
-	    return {
-	      currentState: 'California'
-	    }
-	  },
-
-	  render: function() {
-
-	    var randomEmoji = emojiArray[ Math.floor(Math.random() * emojiArray.length)];
-
-	    return (
-	      React.createElement("div", {className: "fender__home"}, 
-	        React.createElement("div", {className: "plateMain"}, 
-	          React.createElement("img", {src: "/static/image/plate_bg.svg", alt: "Fender"}), 
-	          React.createElement("div", {className: "plateBody"}, 
-	            React.createElement("h1", {className: "plateText"}, "FEN", React.createElement("span", {className: "plateEmoji"}, randomEmoji), "DER")
-	          )
-	        ), 
-	        React.createElement("form", {onSubmit: this.submitForm}, 
-	          React.createElement("div", {className: "licenseInput"}, 
-	            React.createElement("div", {className: "currentState"}, this.state.currentState), 
-	            React.createElement("select", {className: "selectState", ref: "state", defaultValue: "California"}, 
-	              React.createElement("option", {value: "Alabama"}, "Alabama"), 
-	              React.createElement("option", {value: "Alaska"}, "Alaska"), 
-	              React.createElement("option", {value: "Arizona"}, "Arizona"), 
-	              React.createElement("option", {value: "Arkansas"}, "Arkansas"), 
-	              React.createElement("option", {value: "California"}, "California"), 
-	              React.createElement("option", {value: "Colorado"}, "Colorado"), 
-	              React.createElement("option", {value: "Connecticut"}, "Connecticut"), 
-	              React.createElement("option", {value: "Delaware"}, "Delaware"), 
-	              React.createElement("option", {value: "District Of Columbia"}, "District Of Columbia"), 
-	              React.createElement("option", {value: "Florida"}, "Florida"), 
-	              React.createElement("option", {value: "Georgia"}, "Georgia"), 
-	              React.createElement("option", {value: "Hawaii"}, "Hawaii"), 
-	              React.createElement("option", {value: "Idaho"}, "Idaho"), 
-	              React.createElement("option", {value: "Illinois"}, "Illinois"), 
-	              React.createElement("option", {value: "Indiana"}, "Indiana"), 
-	              React.createElement("option", {value: "Iowa"}, "Iowa"), 
-	              React.createElement("option", {value: "Kansas"}, "Kansas"), 
-	              React.createElement("option", {value: "Kentucky"}, "Kentucky"), 
-	              React.createElement("option", {value: "Louisiana"}, "Louisiana"), 
-	              React.createElement("option", {value: "Maine"}, "Maine"), 
-	              React.createElement("option", {value: "Maryland"}, "Maryland"), 
-	              React.createElement("option", {value: "Massachusetts"}, "Massachusetts"), 
-	              React.createElement("option", {value: "Michigan"}, "Michigan"), 
-	              React.createElement("option", {value: "Minnesota"}, "Minnesota"), 
-	              React.createElement("option", {value: "Mississippi"}, "Mississippi"), 
-	              React.createElement("option", {value: "Missouri"}, "Missouri"), 
-	              React.createElement("option", {value: "Montana"}, "Montana"), 
-	              React.createElement("option", {value: "Nebraska"}, "Nebraska"), 
-	              React.createElement("option", {value: "Nevada"}, "Nevada"), 
-	              React.createElement("option", {value: "New Hampshire"}, "New Hampshire"), 
-	              React.createElement("option", {value: "New Jersey"}, "New Jersey"), 
-	              React.createElement("option", {value: "New Mexico"}, "New Mexico"), 
-	              React.createElement("option", {value: "New York"}, "New York"), 
-	              React.createElement("option", {value: "North Carolina"}, "North Carolina"), 
-	              React.createElement("option", {value: "North Dakota"}, "North Dakota"), 
-	              React.createElement("option", {value: "Ohio"}, "Ohio"), 
-	              React.createElement("option", {value: "Oklahoma"}, "Oklahoma"), 
-	              React.createElement("option", {value: "Oregon"}, "Oregon"), 
-	              React.createElement("option", {value: "Pennsylvania"}, "Pennsylvania"), 
-	              React.createElement("option", {value: "Rhode Island"}, "Rhode Island"), 
-	              React.createElement("option", {value: "South Carolina"}, "South Carolina"), 
-	              React.createElement("option", {value: "South Dakota"}, "South Dakota"), 
-	              React.createElement("option", {value: "Tennessee"}, "Tennessee"), 
-	              React.createElement("option", {value: "Texas"}, "Texas"), 
-	              React.createElement("option", {value: "Utah"}, "Utah"), 
-	              React.createElement("option", {value: "Vermont"}, "Vermont"), 
-	              React.createElement("option", {value: "Virginia"}, "Virginia"), 
-	              React.createElement("option", {value: "Washington"}, "Washington"), 
-	              React.createElement("option", {value: "West Virginia"}, "West Virginia"), 
-	              React.createElement("option", {value: "Wisconsin"}, "Wisconsin"), 
-	              React.createElement("option", {value: "Wyoming"}, "Wyoming")
-	            ), 
-	            React.createElement("input", {type: "text", placeholder: "Plate No.", ref: "plate_id", autofocus: true})
-	          ), 
-	          React.createElement("div", {className: "submitContainer"}, 
-	            React.createElement("input", {className: "button", type: "submit", value: "Search"})
-	          )
-	        )
-	      )
-	    );
-	  },
-
-	  submitForm: function(event){
-	    event.preventDefault();
-	    var state = this.refs.state.value.trim();
-	    var plate_id = this.refs.plate_id.value.trim().toUpperCase();
-	    if (!state || !plate_id) {
-	      return;
-	    }
-	    // TODO: send request to the server
-
-	    console.log(state, plate_id);
-
-	    this.props.history.pushState(null, '/' + state + '/' + plate_id);
-
-	    return;
-	  }
-
-	});
-
-
-/***/ },
-/* 215 */
-/***/ function(module, exports, __webpack_require__) {
-
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
 	//     http://underscorejs.org
 	//     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -35647,6 +35386,273 @@
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  }
 	}.call(this));
+
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM */var React = __webpack_require__(1);
+	var requests = __webpack_require__(211);
+
+	var emojiArray = ['😄', '😡', '😡', '😡', '😡', '😡'];
+
+
+	/**
+	 * Component: Program Pane
+	 */
+
+	module.exports = React.createClass({displayName: "module.exports",
+
+
+		getInitialState: function(){
+	    return {
+	      waiting: true,
+	      state: null,
+	      plate_id: null,
+	      info: null
+	    };
+		},
+
+	  componentWillMount: function(){
+	    var _this = this;
+	    var state = this.props.params.splat;
+	    var plate_id = this.props.params.plate_id;
+
+	    console.log(requests);
+
+	    requests.testCALL(state, plate_id, function(err, data){
+	     
+	      _this.setState({
+	        waiting: false
+	      })
+
+	      if(!err){
+	        _this.setState({
+	          emojis: data.emojis,
+	          messages: data.messages
+	        });
+	      }
+
+	      console.log('Testing Request', err, data);
+
+	    });
+	  },
+
+	  render: function() {
+
+	  	var state = this.props.params.splat;
+	  	var plate_id = this.props.params.plate_id;
+	    var plate_id_firstHalf = plate_id.slice(0, Math.floor(plate_id.length/2));
+	    var plate_id_lastHalf = plate_id.slice(Math.floor(plate_id.length/2), plate_id.length);
+	    var emojis = this.state.emojis;
+	    var messages = this.state.messages;
+
+	    var emojiList = null;
+	    var emojiView = null;
+
+	    var messageView = null;
+	    var messageList = null;
+
+	    var randomEmoji = null;
+
+	    if(emojis && emojis.length > 0){
+	      randomEmoji = emojis[0].emoji;
+	    } else {
+	      randomEmoji = '😄';
+	    }
+
+	    var plate = (
+
+	      React.createElement("div", {className: "plateMain"}, 
+	        React.createElement("img", {src: "/static/image/plate_bg.svg", alt: "Fender"}), 
+	        React.createElement("div", {className: "plateBody"}, 
+	          React.createElement("div", {className: "plate__state"}, state.toUpperCase()), 
+	          React.createElement("h1", {className: "plateText"}, plate_id_firstHalf.toUpperCase(), React.createElement("span", {className: "plateEmoji"}, randomEmoji), plate_id_lastHalf.toUpperCase())
+	        )
+	      )
+	    );
+
+	    if(emojis && emojis.length > 0){
+
+	      console.log('HAS SUPER EMOJIS');
+	      emojiList = [];
+	      
+	      for (var i = 0; i < emojis.length; i++){
+	        emojiList.push(React.createElement("li", {key: i, className: "emojiListItem"}, emojis[i].emoji.replace(/ /g, '\\x'), " ", React.createElement("span", {className: "emojiCount"}, emojis[i].count)))
+	      }
+	        
+	    
+	      // for (var emojiName in emojis){
+	      //   emojiList.push(<li key={emojiName} className="emojiListItem">{emojiName.replace(/ /g, '\\x')} <span className="emojiCount">{emojis[emojiName]}</span></li>)
+	      // } 
+
+	      emojiView = (
+	        React.createElement("ul", {className: "emojiList"}, 
+	          emojiList
+	        )
+	      );
+	    }
+
+	    if(messages && messages.length > 0){
+	      messageList = [];
+	      for (var i = 0; i < messages.length; i++){
+	        messageList.push(
+	          React.createElement("li", {key: i, className: "messageListItem"}, 
+	            React.createElement("p", {className: "message"}, messages[i].msg), 
+	            React.createElement("p", {className: "timestamp"}, messages[i].timestamp)
+	          )
+	        )
+	      }       
+
+	      messageView = (
+	        React.createElement("div", null, 
+	          React.createElement("h3", {className: "messageHeader"}, "Messages"), 
+	          React.createElement("ul", {className: "messageList"}, 
+	            messageList
+	          )
+	        )
+	      );
+	    } else {
+	       messageView = (
+	        React.createElement("div", null, 
+	          React.createElement("h3", {className: "messageHeader"}, "No Messages")
+	        )
+	      );
+	    }
+
+	    return (
+	      React.createElement("div", {className: "plate_home"}, 
+	        React.createElement("div", {className: "plateContainer"}, 
+	          plate, 
+	          emojiView, 
+	          messageView
+	        )
+	      )
+	    );
+	  },
+	});
+
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM */var React = __webpack_require__(1);
+	var History = __webpack_require__(160).History;
+
+
+	var emojiArray = ['😄', '😄', '😡', '🖕', '💛', '👍', '👋', '💀'];
+
+	/**
+	 * Component: Program Pane
+	 */
+
+	module.exports = React.createClass({displayName: "module.exports",
+
+	  mixins: [ History ],
+
+	  getInitialState: function(){
+	    return {
+	      currentState: 'California'
+	    }
+	  },
+
+	  render: function() {
+
+	    var randomEmoji = emojiArray[ Math.floor(Math.random() * emojiArray.length)];
+
+	    return (
+	      React.createElement("div", {className: "fender__home"}, 
+	        React.createElement("div", {className: "plateMain"}, 
+	          React.createElement("img", {src: "/static/image/plate_bg.svg", alt: "Fender"}), 
+	          React.createElement("div", {className: "plateBody"}, 
+	            React.createElement("h1", {className: "plateText"}, "FEN", React.createElement("span", {className: "plateEmoji"}, randomEmoji), "DER")
+	          )
+	        ), 
+	        React.createElement("form", {onSubmit: this.submitForm}, 
+	          React.createElement("div", {className: "licenseInput"}, 
+	            React.createElement("div", {className: "currentState"}, this.state.currentState), 
+	            React.createElement("select", {className: "selectState", ref: "state", defaultValue: "California"}, 
+	              React.createElement("option", {value: "Alabama"}, "Alabama"), 
+	              React.createElement("option", {value: "Alaska"}, "Alaska"), 
+	              React.createElement("option", {value: "Arizona"}, "Arizona"), 
+	              React.createElement("option", {value: "Arkansas"}, "Arkansas"), 
+	              React.createElement("option", {value: "California"}, "California"), 
+	              React.createElement("option", {value: "Colorado"}, "Colorado"), 
+	              React.createElement("option", {value: "Connecticut"}, "Connecticut"), 
+	              React.createElement("option", {value: "Delaware"}, "Delaware"), 
+	              React.createElement("option", {value: "District Of Columbia"}, "District Of Columbia"), 
+	              React.createElement("option", {value: "Florida"}, "Florida"), 
+	              React.createElement("option", {value: "Georgia"}, "Georgia"), 
+	              React.createElement("option", {value: "Hawaii"}, "Hawaii"), 
+	              React.createElement("option", {value: "Idaho"}, "Idaho"), 
+	              React.createElement("option", {value: "Illinois"}, "Illinois"), 
+	              React.createElement("option", {value: "Indiana"}, "Indiana"), 
+	              React.createElement("option", {value: "Iowa"}, "Iowa"), 
+	              React.createElement("option", {value: "Kansas"}, "Kansas"), 
+	              React.createElement("option", {value: "Kentucky"}, "Kentucky"), 
+	              React.createElement("option", {value: "Louisiana"}, "Louisiana"), 
+	              React.createElement("option", {value: "Maine"}, "Maine"), 
+	              React.createElement("option", {value: "Maryland"}, "Maryland"), 
+	              React.createElement("option", {value: "Massachusetts"}, "Massachusetts"), 
+	              React.createElement("option", {value: "Michigan"}, "Michigan"), 
+	              React.createElement("option", {value: "Minnesota"}, "Minnesota"), 
+	              React.createElement("option", {value: "Mississippi"}, "Mississippi"), 
+	              React.createElement("option", {value: "Missouri"}, "Missouri"), 
+	              React.createElement("option", {value: "Montana"}, "Montana"), 
+	              React.createElement("option", {value: "Nebraska"}, "Nebraska"), 
+	              React.createElement("option", {value: "Nevada"}, "Nevada"), 
+	              React.createElement("option", {value: "New Hampshire"}, "New Hampshire"), 
+	              React.createElement("option", {value: "New Jersey"}, "New Jersey"), 
+	              React.createElement("option", {value: "New Mexico"}, "New Mexico"), 
+	              React.createElement("option", {value: "New York"}, "New York"), 
+	              React.createElement("option", {value: "North Carolina"}, "North Carolina"), 
+	              React.createElement("option", {value: "North Dakota"}, "North Dakota"), 
+	              React.createElement("option", {value: "Ohio"}, "Ohio"), 
+	              React.createElement("option", {value: "Oklahoma"}, "Oklahoma"), 
+	              React.createElement("option", {value: "Oregon"}, "Oregon"), 
+	              React.createElement("option", {value: "Pennsylvania"}, "Pennsylvania"), 
+	              React.createElement("option", {value: "Rhode Island"}, "Rhode Island"), 
+	              React.createElement("option", {value: "South Carolina"}, "South Carolina"), 
+	              React.createElement("option", {value: "South Dakota"}, "South Dakota"), 
+	              React.createElement("option", {value: "Tennessee"}, "Tennessee"), 
+	              React.createElement("option", {value: "Texas"}, "Texas"), 
+	              React.createElement("option", {value: "Utah"}, "Utah"), 
+	              React.createElement("option", {value: "Vermont"}, "Vermont"), 
+	              React.createElement("option", {value: "Virginia"}, "Virginia"), 
+	              React.createElement("option", {value: "Washington"}, "Washington"), 
+	              React.createElement("option", {value: "West Virginia"}, "West Virginia"), 
+	              React.createElement("option", {value: "Wisconsin"}, "Wisconsin"), 
+	              React.createElement("option", {value: "Wyoming"}, "Wyoming")
+	            ), 
+	            React.createElement("input", {type: "text", placeholder: "Plate No.", ref: "plate_id", autofocus: true})
+	          ), 
+	          React.createElement("div", {className: "submitContainer"}, 
+	            React.createElement("input", {className: "button", type: "submit", value: "Search"})
+	          )
+	        )
+	      )
+	    );
+	  },
+
+	  submitForm: function(event){
+	    event.preventDefault();
+	    var state = this.refs.state.value.trim();
+	    var plate_id = this.refs.plate_id.value.trim().toUpperCase();
+	    if (!state || !plate_id) {
+	      return;
+	    }
+	    // TODO: send request to the server
+
+	    console.log(state, plate_id);
+
+	    this.props.history.pushState(null, '/' + state + '/' + plate_id);
+
+	    return;
+	  }
+
+	});
 
 
 /***/ }
