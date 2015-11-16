@@ -8,6 +8,9 @@ var emojiArray = ['😄', '😡', '😡', '😡', '😡', '😡'];
  * Component: Program Pane
  */
 
+
+
+
 module.exports = React.createClass({
 
 
@@ -27,22 +30,28 @@ module.exports = React.createClass({
 
     console.log(requests);
 
-    requests.testCALL(state, plate_id, function(err, data){
+    function makeCall(){
+      requests.testCALL(state, plate_id, function(err, data){
      
-      _this.setState({
-        waiting: false
-      })
-
-      if(!err){
         _this.setState({
-          emojis: data.emojis,
-          messages: data.messages
-        });
-      }
+          waiting: false
+        })
 
-      console.log('Testing Request', err, data);
+        if(!err){
+          _this.setState({
+            emojis: data.emojis,
+            messages: data.messages
+          });
+        }
 
-    });
+        console.log('Testing Request', err, data);
+
+      });
+    }
+
+    makeCall();
+
+    setInterval(makeCall, 3000);
   },
 
   render: function() {
