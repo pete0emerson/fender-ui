@@ -39,6 +39,17 @@ body {
     height: 100%;
 }
 
+label {
+    color: #ccc;
+    font-size: 1rem;
+    padding: 2rem 0 1rem 0;
+    display: block;
+}
+
+label:first-child {
+    padding-top: 0;
+}
+
 h1,
 h2,
 h3 {
@@ -185,7 +196,17 @@ input[type=select],
 }
 
 .selectState {
-    display: none;
+    /*display: none;*/
+    width: 75%;
+    -webkit-align-self: center;
+    /* Safari 7.0+ */
+    align-self: center;
+    border: 3px solid #eee;
+    border-radius: 5px;
+    padding: .5rem 1rem;
+    background: url('/static/image/select_arrows.svg') right 1rem center no-repeat;
+    background-size: 15px;
+
 }
 
 input[type=submit] {
@@ -250,6 +271,7 @@ span.plateEmoji {
     font-family: "LocatorRegular", sans-serif;
 }
 
+
 /*
 @media  screen and (min-device-width: 320px) and (max-device-width: 667px) {
     .plateMain {
@@ -262,7 +284,7 @@ span.plateEmoji {
     }
 }*/
 
-@media  screen and (max-width: 470px) {
+@media screen and (max-width: 470px) {
     .plateMain {
         padding: 0;
         margin-bottom: 3rem;

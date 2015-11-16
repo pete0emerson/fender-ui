@@ -31,9 +31,11 @@ module.exports = React.createClass({
           </div>          
         </div>
         <form onSubmit={this.submitForm}>
-          <div className="licenseInput">
-            <div className='currentState'>{this.state.currentState}</div>
-            <input type="text" placeholder="Plate No." ref="plate_id" autoFocus="true"></input>
+          <div className="licenseInput">            
+            <label>Enter License Plate Number</label>
+            <input type="text" placeholder="XXX XXX" ref="plate_id" autoFocus="true"></input>
+
+            <label>Select License Plate State</label>
             <select className="selectState" ref="state" defaultValue="California">
               <option value="Alabama">Alabama</option>
               <option value="Alaska">Alaska</option>
@@ -86,8 +88,8 @@ module.exports = React.createClass({
               <option value="West Virginia">West Virginia</option>
               <option value="Wisconsin">Wisconsin</option>
               <option value="Wyoming">Wyoming</option>
-            </select>
-            
+            </select>           
+
           </div>
           <div className="submitContainer">
             <input className="button" type="submit" value="Search"/>
@@ -101,6 +103,9 @@ module.exports = React.createClass({
     event.preventDefault();
     var state = this.refs.state.value.trim();
     var plate_id = this.refs.plate_id.value.trim().toUpperCase();
+    
+    plate_id = plate_id.replace(' ', '');
+
     if (!state || !plate_id) {
       return;
     }
